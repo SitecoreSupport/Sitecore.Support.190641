@@ -144,10 +144,12 @@
       //Registration for the event using addEventListener only works on the window (which fires for window resizes). Resize of element layout cannot be detected using addEventListener registration. 
       // Using special event instead.
       if (parseInt($sc.browser.version) > 8) {
-        //eventName = "elementresize";
-        // Sitecore Support Fix #190641
-        eventName = "DOMSubtreeModified";
-        // Sitecore Support Fix #190641
+          // Sitecore Support Fix #190641
+          if (window.navigator.userAgent.indexOf("Edge") > -1)
+              eventName = "DOMSubtreeModified";
+          else
+              eventName = "elementresize";
+          // Sitecore Support Fix #190641
       }
     }
     else {
